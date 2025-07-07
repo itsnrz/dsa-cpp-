@@ -28,7 +28,7 @@ This repository contains my personal collection of solved Data Structures and Al
 
 ## 🚀 Purpose
 
-- Learn and practice DSA as part of my **3rd semester B.Tech curriculum**
+- Learn and practice DSA 
 - Strengthen problem-solving skills using C++
 - Build a well-organized GitHub repository for academic use
 
