@@ -25,7 +25,7 @@ public:
 
 // next permutation
 /*steps :
-1 = find pivot(a number) from last  to first element do oppoing if a[i]>a[i-1] its pivot
+1 = find pivot(a number) from last  to first element do loppoing if a[i]>a[i-1] its pivot
 2 = swap pivot with right most element 
 3 = reverse remaining e;lement and add in places 
 */
