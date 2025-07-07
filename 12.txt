@@ -1,0 +1,307 @@
+                                       TIME          COMPLEXITY
+ 
+Time Complexity is a way to describe how the runtime of an algorithm increases with the size of the input (usually denoted as n).
+
+
+
+📌 In Simple Words:
+
+Time complexity tells you:
+
+    “How many operations will the algorithm perform as input size increases?”
+
+It does not measure actual time (like seconds), but rather how fast the number of steps grows.
+
+
+
+🔍 Why Is It Important?
+
+    Helps you understand how efficient your algorithm is.
+
+    Lets you compare two solutions without running them.
+
+
+
+🧠 What is Big O Notation?
+
+Big O notation is a mathematical way to describe the upper bound (worst-case) of how an algorithm's time or space requirement grows with input size (n).
+
+
+
+💡 Why Use Big O?
+
+    To analyze performance of algorithms.
+
+    To compare efficiency regardless of hardware.
+
+    Focuses on growth rate, not actual execution time.
+
+
+
+📌 In Simple Words:
+
+    Big O tells us how the runtime or memory grows as the input size increases — ignoring constants and small terms.
+
+
+
+
+🧪 Common Big O Notations:
+Big O   	                Name	                                What It Means
+
+O(1)	                    Constant	                            Always takes same time
+
+O(log n)	                Logarithmic	                            Very efficient – like binary search
+
+O(n)	                    Linear	                                Time grows proportionally with input
+
+O(n log n)	                Linearithmic	                        Common in fast sorting algorithms
+
+O(n²)	                    Quadratic	                            Slows down with nested loops
+
+O(2^n)	                    Exponential	                            Very slow for large input
+
+O(n!)	                    Factorial	                            Impractical for big inputs
+
+
+
+
+✅ Steps to Calculate Time Complexity:
+
+🔹 1. Count the number of times a statement runs
+
+Start from the outermost block (loop/function) and move inward.
+
+
+🔹 2. Ignore constants and non-dominant terms
+
+When you get multiple terms like O(n + n²), keep only the dominant one (O(n²) here).
+
+
+
+
+📘 Examples
+
+🔸 Example 1: Single Loop
+for (int i = 0; i < n; i++) {
+    cout << i;
+}
+🔍 Runs n times → O(n)
+
+
+🔸 Example 2: Nested Loops
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+        cout << i << j;
+    }
+}
+🔍 Outer loop runs n times, and for each, inner runs n → total = n × n = O(n²)
+
+
+🔸 Example 3: Logarithmic
+while (n > 1) {
+    n = n / 2;
+}
+🔍 Every loop halves n, so it runs log₂(n) times → O(log n)
+
+
+🔸 Example 4: Combined Loops
+for (int i = 0; i < n; i++) cout << i;       // O(n)
+for (int j = 0; j < n; j++) cout << j;       // O(n)
+🔍 Total = O(n) + O(n) = O(2n) → Simplifies to O(n)
+
+
+🔸 Example 5: Function Calls
+int func(int n) {
+    if (n <= 1) return 1;
+    return func(n - 1) + func(n - 2);
+}
+🔍 This is Fibonacci recursion → Time Complexity = O(2ⁿ)
+
+
+🧠 Tip:
+Use these rough rules:
+Pattern            	            Time Complexity
+Single for loop	                O(n)
+Nested for loops	            O(n²)
+Loop with n/2, n/4...	        O(log n)
+Recursive + two calls	        O(2ⁿ)
+
+
+
+
+
+🔰 Main Asymptotic Notations:
+Notation	                    Represents	                         Meaning
+Big O (O)	                    Worst-case scenario	                 Max number of operations
+Big Omega (Ω)	                Best-case scenario	                 Minimum number of operations
+Big Theta (Θ)	                Average / tight bound                Exact number of operations in all cases
+Little o (o)	                Strict upper bound	                 Grows slower than another function
+Little omega (ω)                Strict lower bound	                 Grows faster than another function
+
+
+
+✅ 1. Big O (O) – Upper Bound
+
+    Tells us the maximum time an algorithm can take.
+
+📌 Example:
+For linear search:
+
+for (int i = 0; i < n; i++) if (arr[i] == target) return i;
+
+    Worst-case: O(n) (target is last or not present)
+
+
+
+
+✅ 2. Big Omega (Ω) – Lower Bound
+
+    Tells us the minimum time an algorithm can take.
+
+📌 Example:
+
+    Best-case: Ω(1) (target is first element)
+
+
+
+
+✅ 3. Big Theta (Θ) – Tight Bound
+
+    When best-case = worst-case = average-case, it's Θ(f(n))
+
+📌 Example:
+
+    Always loops n times → Θ(n)
+
+
+
+
+✅ 4. Little o (o) – Strictly Less
+
+    Means algorithm grows slower than a function, but not equal.
+
+📌 If T(n) = 2n, then:
+
+    T(n) ∈ o(n²)
+
+    (i.e., grows slower than n², but not equal)
+
+
+
+
+✅ 5. Little omega (ω) – Strictly Greater
+
+    Means algorithm grows faster than a function, but not equal.
+
+📌 If T(n) = n log n, then:
+
+    T(n) ∈ ω(n)
+
+    (i.e., grows faster than n, but not equal)
+
+
+
+
+
+🧠 Summary Diagram:
+
+O(f(n))      → upper bound (≤)
+Ω(f(n))      → lower bound (≥)
+Θ(f(n))      → tight bound ( = )
+o(f(n))      → strictly less ( < )
+ω(f(n))      → strictly more ( > )
+
+
+
+
+
+                             SPACE                  COMPLEXCITY
+
+
+
+🧠 What is Space Complexity?
+
+Space Complexity is the total amount of memory or space your algorithm or program needs to run, relative to input size n.
+🧾 Formula (General Idea):
+
+    Space Complexity = Auxiliary Space + Input Space
+
+    🔹 Auxiliary Space: Extra space the algorithm uses (temporary arrays, recursion stack, variables, etc.)
+
+    🔹 Input Space: Memory taken by input itself
+
+
+✅ Example 1: Constant Space
+
+int sum(int* arr, int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += arr[i];
+    }
+    return total;
+}
+
+    🧠 Space Complexity: O(1)
+    No extra memory is used — only one variable (total)
+
+
+
+✅ Example 2: Linear Space
+
+int* copyArray(int* arr, int n) {
+    int* newArr = new int[n];
+    for (int i = 0; i < n; i++) {
+        newArr[i] = arr[i];
+    }
+    return newArr;
+}
+
+    🧠 Space Complexity: O(n)
+    Extra array of size n is created
+
+
+
+✅ Example 3: Recursive Function
+
+int factorial(int n) {
+    if (n == 0) return 1;
+    return n * factorial(n - 1);
+}
+
+    🧠 Space Complexity: O(n)
+    Because of the recursion stack (calls n times)
+
+
+
+
+⚠️ Important Notes:
+Factor                	                 Counts in Space Complexity?
+Input array itself	                     ✅ Yes (if counted)
+Temporary variable s	                 ✅ Yes
+Recursion stack memory	                 ✅ Yes
+Output	                                 🚫 No (unless explicitly asked)
+
+
+
+📌 Why It Matters?
+
+    Helps you understand memory usage, which is critical for:
+
+        Embedded systems (low memory)
+
+        Large-scale apps (millions of data points)
+
+        Competitive coding (memory limits)
+
+
+
+📘 Common Space Complexities (Big O)
+Big O Notation	              Description	                            Example Algorithm or Code
+
+O(1)	                      Constant Space (no extra memory)	        Simple loops with a few variables (e.g., sum of array)
+O(log n)	                  Logarithmic Space	                        Binary recursion without storing all results
+O(n)	                      Linear Space	                            Storing results in array or recursion with depth n
+O(n log n)	                  Log-linear Space	                        Merge Sort (due to merging arrays)
+O(n^2)	                      Quadratic Space	                        2D matrices, DP tables like Floyd-Warshall
+O(2^n)	                      Exponential Space	                        Recursive solutions with branching (e.g., subset generation)
+O(n!)	                      Factorial Space	                        Permutation generation (e.g., backtracking all permutations)

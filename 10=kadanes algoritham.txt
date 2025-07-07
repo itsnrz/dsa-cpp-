@@ -1,0 +1,79 @@
+📌 Definition:
+
+A subarray of an array is a sequence of elements that are adjacent (i.e., they occupy consecutive positions in memory and the original array).
+
+For an array arr[] of size n, any sequence arr[i], arr[i+1], ..., arr[j] where 0 ≤ i ≤ j < n is a subarray.
+✅ Examples:
+
+Given:
+
+int arr[] = {1, 2, 3, 4};
+
+All possible subarrays include:
+
+[1]
+[2]
+[3]
+[4]
+[1,2]
+[2,3]
+[3,4]
+[1,2,3]
+[2,3,4]
+[1,2,3,4]
+
+Note:
+
+    [1, 3] is not a subarray → because 1 and 3 are not contiguous.
+
+🚫 Subarray vs Subsequence
+Feature	Subarray	Subsequence
+Contiguous?	✅ Yes	❌ Not necessarily
+Order matters?	✅ Yes	✅ Yes
+Example	[2, 3, 4]	[2, 4]
+🔢 Total Number of Subarrays
+
+For an array of size n, total number of subarrays is:
+n(n+1)/2
+
+For example, for n = 4, total = 4×(4+1)/2 = 10 subarrays.
+
+
+
+code to print all sub arrays :-
+#include<iostream>
+using namespace std;
+int main(){
+    int n=5;
+    int a[n]={1,2,3,4,5};
+    for(int st=0;st<n;st++){
+        for(int end=st;end<n;end++){
+            for(int i=st;i<=end;i++)cout<<a[i];
+            cout<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
+
+
+maximum subbarray sum problem
+brute force(0(n)^2)
+// maximum subarray sum code
+int main(){
+    int n=5;
+    int a[n]={1,2,3,4,5};
+    int max_sum=0;
+    for(int st=0;st<n;st++){
+        int sum=0;
+        for(int end=st;end<n;end++){
+            sum+=a[end];
+            max_sum=max(sum,max_sum);
+        }
+    }
+    cout<<"maximum sub array sum is : "<<max_sum<<endl;
+    return 0;
+}
+
+
+

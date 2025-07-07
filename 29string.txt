@@ -1,0 +1,120 @@
+🧵 What is string in C++?
+
+In C++, a string is a class in the Standard Template Library (std::string) that represents a sequence of characters. It is:
+Easier to use than C-style strings (char arrays)
+Automatically manages memory
+Comes with powerful built-in functions
+
+
+
+🛠️ Basic Declaration and Initialization
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+    string s1 = "Hello";
+    string s2("World");
+    string s3;        // empty string
+    s3 = s1 + " " + s2;  // concatenation
+    cout << s3 << endl;  // Output: Hello World
+}
+
+
+✍️ Input and Output
+cin (Single word):-
+
+string name;
+cin >> name;  // Only reads until first space
+
+
+getline() (Full line input):-
+
+string sentence;
+getline(cin, sentence);  // Reads whole line including spaces
+
+
+
+🔧 Common Operations
+| Operation             | Example             | Description                     |
+| --------------------- | ------------------- | ------------------------------- |
+| `length()` / `size()` | `s.length()`        | Number of characters            |
+| `empty()`             | `s.empty()`         | True if string is empty         |
+| `clear()`             | `s.clear()`         | Empties the string              |
+| `append()`            | `s.append("abc")`   | Adds to end                     |
+| `+`                   | `s1 + s2`           | Concatenation                   |
+| `[]`                  | `s[i]`              | Access character                |
+| `substr(pos, len)`    | `s.substr(0, 5)`    | Substring                       |
+| `find(str)`           | `s.find("abc")`     | Returns index or `string::npos` |
+| `erase(pos, len)`     | `s.erase(2, 3)`     | Erase part of string            |
+| `insert(pos, str)`    | `s.insert(2, "xy")` | Insert at index                 |
+
+
+
+🚫 C++ string vs C-style char[]
+| Feature            | `std::string`     | `char[]` / `char*`            |
+| ------------------ | ----------------- | ----------------------------- |
+| Memory Safety      | ✅ Yes             | ❌ No (manual)                 |
+| Easy Input/Output  | ✅ Yes             | ❌ Needs `cin.getline()`       |
+| Operator Overloads | ✅ Yes (`+`, `==`) | ❌ No                          |
+| Dynamic Size       | ✅ Yes             | ❌ Fixed or manually allocated |
+| Built-in Functions | ✅ Yes             | ❌ Minimal support             |
+
+
+1910. Remove All Occurrences of a Substring
+
+567. Permutation in String
+
+
+
+
+🔍 What is a Sliding Window?
+A sliding window is a powerful technique used to solve problems involving subarrays or substrings efficiently — especially when the subarray length is fixed or changes predictably.
+📦 Core Idea:
+
+Instead of recomputing values from scratch for every subarray/substring, we:
+
+    Process the first window.
+
+    Slide the window one element at a time.
+
+    Update values incrementally (add new element, remove old one).
+
+
+
+
+📘 Example Problem:
+
+Check if s2 contains a permutation of s1.
+
+Let’s say:
+
+    s1 = "ab" → we want to check if any substring of length 2 in s2 is a permutation of "ab".
+
+❌ Naive Approach:
+
+For every window of length 2:
+
+    Create a frequency array of the window
+
+    Compare with s1's frequency array
+    ➡️ Time Complexity: O(26 × (s2.length() - s1.length()))
+
+
+
+✅ Sliding Window Optimized Approach:
+    Use two frequency arrays:
+
+        f1[26] for s1
+
+        f2[26] for the current window in s2
+
+    Initialize f2 for the first window
+
+    For each new character:
+
+        Increment count for the new character
+
+        Decrement count for the removed character
+
+    Compare f1 and f2 in O(26) time (instead of rebuilding f2)
+

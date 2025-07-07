@@ -1,0 +1,538 @@
+🧰 What is STL in C++?
+
+STL stands for Standard Template Library — it is a powerful set of C++ template classes and algorithms that provides built-in data structures and functions to make programming faster, safer, and easier.
+
+📦 STL Includes:
+
+🔹 1. Containers – Data Structures
+These store collections of objects.
+Container Type	            Examples	                                Use Case
+Sequence	              vector, list,deque	                       Store data linearly
+Associative	               set, map	                                   Store sorted key/value pairs
+Unordered	              unordered_set, unordered_map	               Fast access using hash table
+Adaptors	              stack, queue, priority_queue	               Special-use containers
+
+🔹 2. Algorithms
+These are functions that perform common operations on containers.
+Examples                       	Description
+sort()	                        Sorts a range
+binary_search()	                Searches for a value in a sorted range
+count(), find()	                Finds or counts occurrences
+reverse(), rotate()	            Modifies order
+
+All in <algorithm> header.
+
+🔹 3. Iterators
+Iterators act like pointers to access elements in containers.
+Examples	                    Description
+begin()	                        Points to first element
+end()	                        Points past the last element
+auto it = v.begin() 	        Loop over container
+
+🔹 4. Function Objects (Functors)
+Objects that can be used like functions (e.g., custom sorting).
+
+
+✨ Why Use STL?
+Feature	Benefit
+Reusable	     Built-in templates and data structures
+Time-saving	     No need to implement from scratch
+Optimized	     Fast and reliable performance
+Versatile	     Works for competitive + real-world dev
+
+
+
+
+
+🧰 What is a vector?
+
+    A vector is like an array, but with more power and flexibility.
+
+    It stores elements contiguously in memory.
+
+    You don’t need to manually manage memory or resizing — it's handled automatically.
+
+
+✅ Syntax:
+
+#include <vector>
+using namespace std;
+
+vector<int> v;  // vector of integers
+
+
+🧠 Advantages over Arrays:
+Feature	             Array    	Vector
+Fixed size            Yes    	No (dynamic size)
+Bounds checking	      No	    No (but safer functions exist)
+STL support           No      	Yes (rich methods)
+
+
+🔧 Common vector Functions in C++
+
+Here are some commonly used functions and operations on vectors:
+Function / Operation             	Description
+push_back(x)	                   Adds element x at the end
+pop_back()	                       Removes the last element
+size()	                           Returns number of elements
+empty()	                           Returns true if vector is empty
+clear()	                           Removes all elements
+resize(n)	                       Resizes vector to n elements
+insert(it,val)                     Inserts val at position it
+erase(it)	                       Erases element at position it
+begin() / end()	                   Returns iterator to first / after last element
+front() / back()	               Access first / last element
+at(i)	                           Safe access to i-th element (bounds-checked)
+[]	                               Access element at index (no bounds checking)
+swap(v2)	                       Swaps contents with another vector
+sort(v.begin(), v.end())	       Sorts the vector (needs <algorithm>)
+size()	                           Number of elements in the vector
+capacity()	                       Number of elements that can be stored without reallocating memory
+max_size()	                       Maximum number of elements the vector can theoretically hold
+empty()	                           Returns true if the vector is empty
+resize(n)	                       Resizes the vector to contain n elements
+shrink_to_fit()                    Requests to reduce capacity to fit size (non-binding)
+reserve(n)	                       Requests that capacity be at least enough to contain n elements
+
+
+
+🧰 What is an Iterator?
+
+An iterator is like a pointer that helps you traverse (iterate through) containers such as vector, set, map, etc.
+Think of iterators as "smart pointers" that point to elements in a container.
+
+🔷 Why Use Iterators?
+    More flexible and generic than index-based loops
+    Work across all STL containers, not just vector
+    Required by STL algorithms like sort(), find(), reverse()
+
+✅ Common Vector Iterators:
+Iterator	                   Description
+begin()  	                   Points to the first element
+end()	                       Points past the last element
+rbegin()	                   Reverse iterator to last element
+rend()	                       Points before first (reverse end)
+cbegin()	                   const_iterator to begin
+cend()	                       const_iterator to end
+
+
+
+
+🧰 What is a list in C++?
+
+A list in C++ is an STL container that implements a doubly linked list. It allows:
+Fast insertions and deletions anywhere (especially in the middle)
+
+    Sequential traversal using iterators
+Unlike vector, elements in a list are not stored contiguously.
+
+
+
+
+🔧 Common list Functions:
+Function	                          Description
+push_back(x)	                      Adds x at the end
+push_front(x)	                      Adds x at the front
+pop_back()	                          Removes last element
+pop_front()  	                      Removes first element
+insert(it, x)	                      Inserts x before iterator it
+erase(it)	                          Erases element at iterator it
+remove(x)	                          Removes all elements equal to x
+sort()	                              Sorts the list
+reverse()	                          Reverses the list
+begin() / end()	                      Iterators to first / after-last element
+rbegin() / rend()	                  Reverse iterators
+size()	                              Returns number of elements
+clear()	                              Removes all elements
+empty()                     	      Checks if list is empty
+front() / back()	                  Access first and last element
+
+
+🆚 Vector vs List (Comparison)  
+Feature                           	vector	                          list
+Memory layout	                 Contiguous	                    Non-contiguous (nodes)
+Access by index	                 ✅ O(1) via [], at()	          ❌ Not allowed
+Insert/delete at end	         ✅ Fast	                      ✅ Fast
+Insert/delete in middle	         ❌ Slow (O(n))	              ✅ Fast (O(1)) with iterator
+Iteration	                     ✅ Fast	                      ✅ Slightly slower
+Random access	                 ✅ Yes	                          ❌ No
+Sorting	                      use sort(v.begin(), v.end())	     Use l.sort() (built-in)
+
+
+
+
+🧰 What is a deque?
+
+deque stands for Double Ended Queue — it's a dynamic array-like container that allows:
+Fast insertion and deletion at both front and back
+Random access like vectors (with [] and at())
+
+
+✅ Syntax:
+#include <deque>
+using namespace std;
+deque<int> dq;
+
+
+
+🧠 Features of deque:
+Feature	                                    deque
+Access by index	                           ✅ Yes (like vector)
+Insert/remove at front	                   ✅ Fast
+Insert/remove at back	                   ✅ Fast
+Insert/remove in middle	                   ❌ Slower than front/back
+Memory layout	                           Not fully contiguous
+Dynamic resizing	                       ✅ Yes
+
+
+
+🔧 Common deque Functions:
+Function	                          Description
+push_back(x)	                      Insert at end
+push_front(x)	                      Insert at front
+pop_back()	                          Remove from end
+pop_front()	                          Remove from front
+front()	                              Access first element
+back()	                              Access last element
+at(i)	                              Access ith element (with bounds)
+[]	                                  Access ith element (no bounds)
+size()	                              Number of elements
+clear()	                              Remove all elements
+insert(it, x)	                      Insert x at position it
+erase(it)	                          Erase element at iterator position
+begin() / end()	                      Iterators
+
+
+
+
+
+🆚 Comparison: vector vs list vs deque
+Feature	                     vector	            list	           deque
+Fast front insert	            No             ✅ Yes	          ✅ Yes
+Fast back insert	         ✅ Yes	          ✅ Yes	            ✅ Yes
+Random access	             ✅ Yes	          ❌ No	            ✅ Yes
+Memory layout	             Contiguous       Linked list	        Blocked (partial)
+Mid-insert efficiency	     ❌ Slow	      ✅ Fast (O(1))	        ❌ Slower
+Sorting	                      sort()	     list.sort()	        sort()
+
+
+
+
+🧰 What is a pair?
+
+A pair is a container defined in <utility> that stores two values (often of different types) as a single unit.
+
+#include <utility>
+using namespace std;
+pair<int, string> p = {1, "hello"};
+
+✅ Syntax:
+pair<Type1, Type2> name;
+
+You can initialize it in several ways:
+
+pair<int, string> p1(1, "apple");
+pair<int, string> p2 = make_pair(2, "banana");
+pair<int, string> p3 = {3, "cherry"};
+
+🔧 Accessing Elements:
+
+cout << p1.first << " " << p1.second;
+
+    first: the first element
+
+    second: the second element
+
+
+
+🧠 Use Cases:
+
+    Store coordinate pairs: (x, y)
+
+    Use in maps or unordered_map as key-value pairs
+
+    Store and sort multiple values together
+
+    Return multiple values from a function
+
+
+
+📦 Common Operations:
+Operation                                     	Description
+make_pair(a, b)	                                Creates a pair from two values
+p.first, p.second	                            Access pair elements
+tie(a, b) = p;	                                Unpacks a pair into two variables
+pair<int, int> arr[]	                        Array of pairs
+vector<pair<T1, T2>>	                        Vector of pairs
+Supports comparison   	                        Can be sorted using sort()
+
+
+
+
+🔷 push_back() vs emplace_back() in C++
+Feature	            push_back()	                                        emplace_back()
+Usage	            Constructs element first, then copies/moves it	    Constructs element in place directly
+Performance   	    Slightly slower (extra copy/move)	                Faster (no copy/move)
+Syntax	            Requires explicit {} or make_pair()	                Can pass constructor arguments directly
+
+
+
+
+🧰 What is a Stack in C++?
+A stack is a container that allows:
+Insertion (push) only at the top
+Deletion (pop) only from the top
+
+It works like a stack of plates — you can only add or remove from the top.
+last in first out.
+
+✅ Header & Syntax:
+#include <stack>
+using namespace std;
+stack<int> st;  // stack of integers
+
+
+🔧 Common Stack Functions:
+Function	                         Description
+push(x)	                             Pushes element x on top
+pop()	                             Removes the top element
+top()	                             Returns the top element
+empty()	                             Returns true if stack is empty
+size()	                             Returns number of elements
+emplace(x)	                         Constructs and inserts (faster than push)
+
+
+
+🧰 What is a queue in C++?
+A queue is a FIFO (First-In-First-Out) container where:
+Elements are added at the back
+Elements are removed from the front
+FIFO (First-In-First-Out)
+
+Just like people standing in a line.
+
+
+✅ Syntax & Header:
+#include <queue>
+using namespace std;
+queue<int> q;  // Queue of integers
+
+
+🔧Common queue Functions:
+Function	                         Description
+push(x)	                          Adds x to the back of the queue
+emplace(x)	                      Adds x to the back (in-place)
+pop()	                          Removes element from the front
+front()	                          Returns the element at the front
+back()	                          Returns the element at the back
+size()	                          Number of elements
+empty()	                          Returns true if queue is empty
+swap(q2)	                      Swaps contents with another queue
+
+
+
+
+🧰 What is a priority_queue?
+A priority_queue is a heap-based data structure that lets you:
+Always access the largest (or smallest) element in O(1)
+Insert and remove elements in O(log n)
+By default, it's a max-heap:
+
+The largest element is always at the top (top() returns it)
+
+
+✅ Syntax & Header:
+#include <queue>
+using namespace std;
+priority_queue<int> pq; // max-heap by default
+
+
+🔧 Common Functions:
+Function	                       Description
+push(x)	                           Adds x to the heap
+pop()	                           Removes the top (largest) element
+top()	                           Returns the top (largest) element
+empty()	                           Checks if queue is empty
+size()	                           Returns the number of elements
+emplace(x)	                       More efficient in-place insertion
+
+
+
+🧰 What is a map in C++?
+
+A map is a container that:
+Stores key-value pairs (key -> value)
+Keys are unique and automatically sorted (ascending) by default
+Uses balanced BST (Red-Black Tree) internally
+Supports logarithmic time for insertion, deletion, and access: O(log n)
+
+
+✅ Syntax:
+#include <map>
+using namespace std;
+
+map<int, string> mp;  // key: int, value: string
+
+
+🔧 Common Functions:
+Function	         Description
+mp[key] = value	     Insert or update value for a key
+mp.at(key)	         Access value (throws exception if not found)
+mp.find(key)	     Returns iterator to key or mp.end()
+mp.count(key)	     Returns 1 if key exists, 0 if not
+mp.erase(key)	     Deletes entry by key
+mp.clear()	         Removes all entries
+mp.empty()	         Returns true if map is empty
+mp.size()	         Number of key-value pairs
+begin(), end()	     Iterators to traverse
+
+🧠 Types of Maps in STL:
+Map Type	            Header	                Description
+map	                    <map>      	             Sorted by key (Red-Black Tree)
+unordered_map	      <unordered_map>	         No order, uses hash table, faster avg O(1)
+multimap	            <map>	                 Allows duplicate keys
+
+
+
+
+🧰 What is a set in C++?
+
+A set is:
+A container that stores unique elements only
+Elements are automatically kept in sorted order (ascending by default)
+Internally implemented using a balanced BST (Red-Black Tree)
+All operations like insert, erase, find take O(log n) time
+
+
+✅ Syntax:
+#include <set>
+using namespace std;
+set<int> s;  // creates a set of integers
+
+
+
+ 🔧Common set Functions:
+| Function        | Description                               |
+| --------------- | ----------------------------------------- |
+| `insert(x)`     | Adds element `x` (if not already present) |
+| `erase(x)`      | Removes element `x` if it exists          |
+| `count(x)`      | Returns 1 if `x` exists, else 0           |
+| `find(x)`       | Returns iterator to `x` or `end()`        |
+| `clear()`       | Removes all elements                      |
+| `size()`        | Number of elements in set                 |
+| `empty()`       | Checks if the set is empty                |
+| `begin()/end()` | Iterators for traversal                   |
+| `*it`           | Dereference iterator to access value      |
+
+
+
+🧠 Variants of Set:
+| Type                 | Description                     |
+| -------------------- | ------------------------------- |
+| `set<int>`           | Sorted set with unique elements |
+| `unordered_set`      | No ordering, average O(1) ops   |
+| `multiset<int>`      | Allows **duplicate** elements   |
+| `set<pair<int,int>>` | Pairs in sorted order           |
+
+
+
+
+
+🧰What Are lower_bound and upper_bound?
+
+They are functions defined in the <algorithm> header and also available as member functions in set, map, etc.
+
+✅ lower_bound(start, end, val)
+    Returns an iterator to the first element ≥ val
+    Think of it as: "first element not less than val"
+
+
+✅ upper_bound(start, end, val)
+    Returns an iterator to the first element > val
+    Think of it as: "first element strictly greater than val"
+
+
+📦 Applicable to:
+
+    vector, array, set, map (sorted containers)
+
+    Custom containers with iterators
+
+
+🧠 Difference Table:
+| Function      | Returns                       |
+| ------------- | ----------------------------- |
+| `lower_bound` | Iterator to **first ≥ value** |
+| `upper_bound` | Iterator to **first > value** |
+
+
+
+
+🧰 What is <algorithm> in C++?
+
+<algorithm> is a standard C++ header that provides a rich set of generic
+functions (template-based) to perform operations on containers like vector, array, deque, list, etc.
+
+
+✅ Commonly Used <algorithm> Functions
+
+🔹 1. Sorting & Searching
+| Function                         | Description                           |
+| -------------------------------- | ------------------------------------- |
+| `sort(start, end)`               | Sorts in ascending order              |
+| `reverse(start, end)`            | Reverses the range                    |
+| `binary_search(start, end, val)` | Checks if value exists (sorted range) |
+| `lower_bound(start, end, val)`   | First element ≥ val                   |
+| `upper_bound(start, end, val)`   | First element > val                   |
+
+
+🔹 2. Counting & Finding
+| Function                  | Description                          |
+| ------------------------- | ------------------------------------ |
+| `count(start, end, val)`  | Count how many times `val` occurs    |
+| `find(start, end, val)`   | Returns iterator to first occurrence |
+| `min_element(start, end)` | Returns iterator to minimum element  |
+| `max_element(start, end)` | Returns iterator to maximum element  |
+
+🔹 3. Modifying Data
+| Function                        | Description                                  |
+| ------------------------------- | -------------------------------------------- |
+| `fill(start, end, val)`         | Fill range with `val`                        |
+| `replace(start, end, old, new)` | Replace `old` with `new` in range            |
+| `next_permutation(start, end)`  | Rearranges to next lexicographic permutation |
+| `prev_permutation(start, end)`  | Previous permutation                         |
+
+
+
+🧰 What is a Comparator Functor?
+
+A comparator functor (also called a comparison function object) is:
+A class or struct with an overloaded () operator
+Used to define custom sorting logic
+Acts like a function when used with STL algorithms or containers
+
+
+🧰 What is a Lambda Functor?
+
+A lambda function in C++ is actually a functor behind the scenes!
+When you write:
+auto f = [](int x) { return x * x; };
+The compiler generates a class with:
+    A call operator operator()
+    possibly captured variables
+    An object of that class assigned to f
+
+So f is technically an instance of a functor — that’s why it's valid to call it like f(5).
+
+✅ In short:
+    A lambda is a type of functor — a "lambda functor" is just a lambda expression that acts like a functor.
+
+
+
+
+✅ Comparator vs Lambda:
+| Feature                             | Functor (Struct/Class)            | Lambda Function                            |
+| ----------------------------------- | --------------------------------- | ------------------------------------------ |
+| Named and reusable                  | ✅                                 | ❌ one-liner, usually inline                |
+| Can store state                     | ✅ (has member variables)          | ❌ (unless using captures)                  |
+| Use in containers like `set`, `map` | ✅ (must be default constructible) | ❌ (lambda can't be used directly in `set`) |
