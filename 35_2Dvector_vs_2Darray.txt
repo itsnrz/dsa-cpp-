@@ -1,0 +1,90 @@
+✅ 1. 2D Vector
+A 2D vector is a dynamic, resizable container from the STL (std::vector) that can store other vectors, effectively simulating a matrix.
+
+
+✅ Syntax:
+vector<vector<int>> mat; // Declaration
+
+
+✅ Example (Input + Access):
+int r = 3, c = 4;
+vector<vector<int>> mat(r, vector<int>(c)); // 3 rows, 4 columns initialized to 0
+// Input
+for(int i = 0; i < r; i++)
+    for(int j = 0; j < c; j++)
+        cin >> mat[i][j];
+// Access
+cout << mat[1][2]; // Element at row 1, column 2
+
+
+✅ Pros:
+    Dynamic size — can resize at runtime
+
+    Safe and flexible
+
+    Easy to use with STL algorithms
+
+    Can create jagged (uneven) rows
+
+
+
+❌ Cons:
+    Slightly more memory overhead
+
+    Slightly slower than raw arrays
+
+
+
+✅ 2. 2D Array (Static or Dynamic)
+🔸 Static 2D Array
+
+Fixed size — must know dimensions at compile time.
+
+int mat[3][4]; // 3 rows, 4 columns
+// Input
+for(int i = 0; i < 3; i++)
+    for(int j = 0; j < 4; j++)
+        cin >> mat[i][j];
+// Access
+cout << mat[1][2];
+
+
+✅ Pros:
+    Fast and memory-efficient
+
+    Simple to use for fixed-size matrices
+
+
+
+❌ Cons:
+    Size must be known at compile-time
+
+    Not resizable
+
+
+🔸 Dynamic 2D Array (Using Pointers)
+int** mat = new int*[r];
+for(int i = 0; i < r; i++)
+    mat[i] = new int[c];
+// Access and Input
+cin >> mat[i][j];
+// Deallocate
+for(int i = 0; i < r; i++) delete[] mat[i];
+delete[] mat;
+
+
+❌ Downsides:
+    Verbose and error-prone (manual memory management)
+
+    Prefer vector<vector<int>> instead
+
+
+
+🔁 Summary Table
+| Feature           | 2D Vector (`vector<vector<int>>`) | Static 2D Array (`int a[3][4]`) | Dynamic 2D Array (pointers) |
+| ----------------- | --------------------------------- | ------------------------------- | --------------------------- |
+| Size flexibility  | ✅ Dynamic                         | ❌ Fixed                         | ✅ Dynamic                   |
+| Memory safety     | ✅ STL handles                     | ✅                               | ❌ Manual delete needed      |
+| Speed             | ⚠️ Slightly slower                | ✅ Fast                          | ✅ Fast                      |
+| Syntax simplicity | ✅                                 | ✅                               | ❌ Complex                   |
+| Jagged support    | ✅                                 | ❌                               | ✅                           |
